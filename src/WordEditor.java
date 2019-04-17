@@ -4,7 +4,7 @@ import java.util.HashSet;
 public abstract class WordEditor {//tested ✔
     public static HashSet<String> stringPermutations(String s){// norvig.com/spell-correct.html
         HashSet<String> arr = new HashSet<>();
-        String letters = "abcdefghijklmnopqrstuvwxyz'-.";
+        String letters = "abcdefghijklmnopqrstuvwxyz";
 
         for (int i = 0; i < s.length(); i++) {
             arr.add(s.substring(0,i)+ s.substring(i+1));//delete
@@ -47,7 +47,7 @@ public abstract class WordEditor {//tested ✔
     }
 
     //
-    public static HashSet<String> sanitizeWord(String s) {
+    public static HashSet<String> sanitizeWord(String s) {//this method is not useful because our dictionary contains alternate forms
         HashSet<String> hashSet = new HashSet<>();
         hashSet.add(s);
         hashSet.add(removeEnding(s, "ing"));
@@ -68,5 +68,8 @@ public abstract class WordEditor {//tested ✔
             hashSet.add(removeEnding(s, "d"));
         }
         return hashSet;
+    }
+    public static String usefulSanitize(String s){
+        return s.toLowerCase().replace(".", "").replace(",","").replace(";", "");
     }
 }

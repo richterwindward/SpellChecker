@@ -39,6 +39,43 @@ public class SpellChecker {
         s.close();
     }
 
+    public void spellcheck(Path misspelledDoc){
+        LinkedList<String> misspelledWords = new LinkedList<>();
+        Scanner s = null;
+        try{
+            s = new Scanner(misspelledDoc);
+        } catch (IOException e){
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+        while(s.hasNext()){
+            String next = WordEditor.usefulSanitize(s.next());
+            if(!wordExists(next)){
+                misspelledWords.add(next);
+            }
+        }
+        s.close();
+
+        while(!misspelledWords.isEmpty()){
+            String misspelledWord = misspelledWords.remove();
+            PriorityQueue<String> pq = generateAndSortWords(misspelledWord);
+            if(pq.size() == 0) {
+                System.out.println("\"" + misspelledWord + "\" was not found in dictionary. No possible correct spellings were found.");
+            }else{
+                if(pq.size() == 1){
+                    System.out.println("\"" + misspelledWord + "\" was not found in dictionary. Possible correct spelling:");
+                }else{
+                    System.out.println("\"" + misspelledWord + "\" was not found in dictionary. Possible correct spellings:");
+                }
+                for (int i = 0; i < Math.min(pq.size(), 4); i++) {
+                    System.out.println("\t>"+pq.poll());
+                }
+            }
+
+        }
+    }
+
     private boolean wordExists(String s) {
         return dict.contains(s);
     }
@@ -70,7 +107,7 @@ public class SpellChecker {
         return pq;
     }
 
-    public PriorityQueue<String> generateAndSortWords(String s){
+    private PriorityQueue<String> generateAndSortWords(String s){
         return sortPossibleWords(generatePossibleWords(s));
     }
 
