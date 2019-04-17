@@ -70,6 +70,6 @@ public abstract class WordEditor {//tested ✔
         return hashSet;
     }
     public static String usefulSanitize(String s){
-        return s.toLowerCase().replace(".", "").replace(",","").replace(";", "");
+        return s.toLowerCase().replace(".", "").replace(",","").replace(";", "").replace("?", "").replace("!", "").replace("\"", "").replace(":", "");
     }
 }
