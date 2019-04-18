@@ -4,7 +4,7 @@ import java.util.HashSet;
 public abstract class WordEditor {//tested ✔
     public static HashSet<String> stringPermutations(String s){// norvig.com/spell-correct.html
         HashSet<String> arr = new HashSet<>();
-        String letters = "abcdefghijklmnopqrstuvwxyz";
+        String letters = "abcdefghijklmnopqrstuvwxyz'";
 
         for (int i = 0; i < s.length(); i++) {
             arr.add(s.substring(0,i)+ s.substring(i+1));//delete
@@ -68,8 +68,5 @@ public abstract class WordEditor {//tested ✔
             hashSet.add(removeEnding(s, "d"));
         }
         return hashSet;
-    }
-    public static String usefulSanitize(String s){
-        return s.toLowerCase().replace(".", "").replace(",","").replace(";", "").replace("?", "").replace("!", "").replace("\"", "").replace(":", "");
     }
 }

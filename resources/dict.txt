@@ -7167,7 +7167,7 @@ cams
 camshaft
 camshafts
 can
-can't
+cant
 canada
 canadian
 canadians
@@ -7277,7 +7277,7 @@ canopied
 canopies
 canopy
 cans
-cant
+can't
 cantankerous
 cantankerously
 cantankerousness

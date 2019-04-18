@@ -50,7 +50,10 @@ public class SpellChecker {
         }
 
         while(s.hasNext()){
-            String next = WordEditor.usefulSanitize(s.next());
+            String next = s.next().replaceAll("[^\\w']|('s)", "");//replace all non-word characters and "'s" with blank. This does not work well with hyphenated words
+            if(next.matches(".*([A-Z0-9]).*")){//ignore proper nouns and numbers
+                continue;
+            }
             if(!wordExists(next)){
                 misspelledWords.add(next);
             }
